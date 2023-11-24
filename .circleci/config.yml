@@ -7,17 +7,21 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "portfolio-react-app/package-lock.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
-          command: npm install
+          command: 
+          cd portfolio-react-app
+          npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "portfolio-react-app/package-lock.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
       - run:
           name: Build React App
-          command: npm run build
+          command:
+          cd portfolio-react-app 
+          npm run build
       - save_cache:
           key: app-build-cache-{{ .Branch }}
           paths:
