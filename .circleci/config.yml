@@ -9,7 +9,7 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
-          name: Print Current Directory
+          name: Print Current Directory 1
           command: pwd
       - run:
           name: Install Dependencies
@@ -20,18 +20,26 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: Print Current Directory
+          name: Print Current Directory 2
           command: pwd
       # - run:
       #     name: Install Netlify CLI
       #     command: npm install netlify-cli
       - run:
           name: Build React App
-          command: npm run build
+          command: |
+            cd portfolio-react-app && npm install
       - save_cache:
           key: app-build-cache-{{ .Branch }}
           paths:
             - ./build
+      - run:
+          name: Print Current Directory 3
+          command: |
+            echo "Listing Files:"
+            ls -la
+            echo "Environment Variables:"
+            printenv
       - run:
           name: Deploy to Netlify
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
