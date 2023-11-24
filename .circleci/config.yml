@@ -22,9 +22,9 @@ jobs:
       - run:
           name: Print Current Directory 2
           command: pwd
-      # - run:
-      #     name: Install Netlify CLI
-      #     command: npm install netlify-cli
+      - run:
+          name: Install Netlify CLI
+          command: npm install netlify-cli
       - run:
           name: Build React App
           command: |
