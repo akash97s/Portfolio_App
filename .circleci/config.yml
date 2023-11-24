@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/repo/portfolio-react-app
+    working_directory: portfolio-react-app
     docker:
       - image: cimg/node:18.16.0
     steps:
