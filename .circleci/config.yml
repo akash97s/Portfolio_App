@@ -1,4 +1,4 @@
-version: 2.2
+version: 2.1
 jobs:
   build:
     working_directory: ~/repo/portfolio-react-app
@@ -26,7 +26,7 @@ jobs:
           name: Deploy to Netlify
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
 workflows:
-  version: 3
+  version: 2
   build-deploy:
     jobs:
       - build:
