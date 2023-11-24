@@ -10,27 +10,27 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
-          command: 
-            npm install
+          command: |
+            cd portfolio-react-app && npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
-      # - run:
-      #     name: Install Netlify CLI
-      #     command: npm install netlify-cli
+      - run:
+          name: Install Netlify CLI
+          command: npm install netlify-cli
       - run:
           name: Build React App
-          command: 
-            npm run build
+          command: |
+            cd portfolio-react-app && npm run build
       - save_cache:
           key: app-build-cache-{{ .Branch }}
           paths:
             - ./build
       - run:
           name: Deploy to Netlify
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
-
+          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=portfolio-react-app/build
+          # ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
        
 workflows:
   version: 2
