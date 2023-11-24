@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Build React App
           command: |
-            cd portfolio-react-app && npm install
+            cd portfolio-react-app && npm run build
       - save_cache:
           key: app-build-cache-{{ .Branch }}
           paths:
