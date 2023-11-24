@@ -17,6 +17,9 @@ jobs:
           paths:
             - ./node_modules
       - run:
+          name: Install Netlify CLI
+          command: npm install netlify-cli
+      - run:
           name: Build React App
           command: |
             cd portfolio-react-app && npm run build
@@ -24,9 +27,6 @@ jobs:
           key: app-build-cache-{{ .Branch }}
           paths:
             - ./build
-      - run:
-          name: Install Netlify CLI
-          command: npm install -g netlify-cli
       - run:
           name: Deploy to Netlify
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
