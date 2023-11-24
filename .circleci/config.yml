@@ -10,18 +10,16 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
-          command: 
-          cd portfolio-react-app
-          npm install
+          command: |
+            cd portfolio-react-app && npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
       - run:
           name: Build React App
-          command:
-          cd portfolio-react-app 
-          npm run build
+          command: |
+            cd portfolio-react-app && npm run build
       - save_cache:
           key: app-build-cache-{{ .Branch }}
           paths:
