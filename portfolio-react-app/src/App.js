@@ -1,11 +1,11 @@
+import React from 'react';
 import './App.css';
+import GridContainer from './layout/gridContainer.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Hi World !!! Circle ci deploy 2
-      </header>
+    <div>
+      <GridContainer />
     </div>
   );
 }
